@@ -5,8 +5,8 @@ module.exports = {
     mode : "development",
     entry: './src/index.js',
     output: {
-    filename: 'static/bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+        filename: 'static/bundle.js',
+        path: path.resolve(__dirname, 'dist'),
     },
     module : {
         rules : [
@@ -16,7 +16,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                      presets: ['@babel/preset-env']
+                      presets: ['@babel/preset-env',"@babel/preset-react"]
                     }
                 }
             },
@@ -48,6 +48,7 @@ module.exports = {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         port: 9000,
-        open: true
+        open: true,
+        hot: true,
     }
 };
