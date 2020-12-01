@@ -3,6 +3,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     mode : "development",
+    devtool: "source-map",
     entry: './src/index.js',
     output: {
         filename: 'static/bundle.js',
@@ -16,7 +17,15 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                      presets: ['@babel/preset-env',"@babel/preset-react"]
+                      presets: ['@babel/preset-env',"@babel/preset-react"],
+                      plugins: [
+                        [
+                          "@babel/plugin-proposal-class-properties",
+                          {
+                            "loose": true
+                          }
+                        ]
+                      ]
                     }
                 }
             },
@@ -32,7 +41,11 @@ module.exports = {
                     },
                   ],
             },
-
+            {
+                test: /\.js$/,
+                enforce: 'pre',
+                use: ['source-map-loader'],
+            },
         ]
     },
     plugins: [

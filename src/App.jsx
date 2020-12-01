@@ -1,10 +1,12 @@
 import React from "react";
-
-
-const App = () =>{
+import Home from "./pages/Home.jsx";
+ 
+const App = () => {
     return (
-        <div>Coronavirus statistics</div>
-    ) 
-}
+      <div>
+        <Home />
+      </div>
+    );
+  }
 
 export default App;
