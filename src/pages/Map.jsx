@@ -2,7 +2,7 @@ import React from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 
-class Chart extends React.Component{
+class Map extends React.Component{
 
     constructor(props){
         super(props)
@@ -20,7 +20,7 @@ class Chart extends React.Component{
     componentDidMount(){
         let map = am4core.create("chartdiv", am4maps.MapChart);
 
-        map.geodataSource.url = "https://www.amcharts.com/lib/4/geodata/json/worldLow.json";
+        map.geodataSource.url = "https://www.amcharts.com/lib/4/geodata/json/worldHigh.json";
         
         //using miller projection
         map.projection = new am4maps.projections.Miller();
@@ -60,7 +60,7 @@ class Chart extends React.Component{
             "logarithmic": true
         });
 
-        let heatLegend = map.createChild(am4maps.HeatLegend);
+        /*let heatLegend = map.createChild(am4maps.HeatLegend);
         heatLegend.valign = "bottom";
         heatLegend.width = 200
         heatLegend.orientation = "horizontal";
@@ -68,14 +68,14 @@ class Chart extends React.Component{
         heatLegend.width = am4core.percent(100);
         heatLegend.valueAxis.renderer.minGridDistance = 30;
         heatLegend.markerContainer.height = 20;
-        heatLegend.markerCount = 10;
-
-
+        heatLegend.markerCount = 10;*/
 
         // Configure series
         let polygonTemplate = polygonSeries.mapPolygons.template;
-        polygonTemplate.tooltipText = "{name}: {TotalConfirmed}";
-        polygonTemplate.fill = am4core.color("#3b3b3b");
+        polygonTemplate.tooltipText = "{name}: {TotalConfirmed}\n";
+        polygonTemplate.fill = am4core.color("#1a2b50");
+        polygonTemplate.stroke = am4core.color("#4b66a6");
+        polygonTemplate.strokeDasharray = "2,1";
         polygonTemplate.clickable = true
 
         //click event
@@ -83,9 +83,14 @@ class Chart extends React.Component{
 
         // Create hover state and set alternative fill color
         let hs = polygonTemplate.states.create("hover");
-        hs.properties.fill = am4core.color("#03DAC6");
+        hs.properties.fill = am4core.color("#3a559a");
 
         polygonSeries.exclude = ["AQ"];
+
+        //zoom to estonia
+        map.events.on("ready", function(ev) {
+            map.zoomToMapObject(polygonSeries.getPolygonById("EE"));
+          });
 
         this.map = map;
     }
@@ -98,9 +103,9 @@ class Chart extends React.Component{
 
     render(){
         return (
-            <div id="chartdiv" style={{ width: "75%", height: "500px"}}></div>
+            <div id="chartdiv" className="map"></div>
         )
     }
 }
 
-export default Chart;
+export default Map;

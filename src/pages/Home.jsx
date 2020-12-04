@@ -1,5 +1,5 @@
 import React from "react";
-import Chart from "./Chart.jsx";
+import Map from "./Map.jsx";
 import "../../public/styles.css";
 
 class Home extends React.Component{
@@ -8,15 +8,36 @@ class Home extends React.Component{
     }
 
     render(){
+
+        const data = {
+            Country: "Canada",
+            CountryCode: "CA",
+            Slug: "canada",
+            NewConfirmed: 541,
+            TotalConfirmed: 12978,
+            NewDeaths: 39,
+            TotalDeaths: 217,
+            NewRecovered: 402,
+            TotalRecovered: 2577,
+            Date: "2020-04-05T06:37:00Z"
+          };
+
         return (
             <div className="home">
-                <div className="home-header">
+                <div className="header">
                     <div className="title">Coronavirus statistics</div>
                 </div>
-                <Chart />
-                <div className="table">
-                    
-                </div>
+                <div className="content">
+                    <div className="section-one">
+                        <Map />
+                    </div>
+                    <div className="section-two">
+                        <div>Country</div>
+                        <div>Cases</div>
+                        <div>Cases over time</div>
+                        <div>Deaths over time</div>
+                    </div>
+                </div> 
             </div>
         )
     }
