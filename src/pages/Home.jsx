@@ -1,6 +1,7 @@
 import React from "react";
 import Map from "./Map.jsx";
 import "../../public/styles.css";
+import Country from "../components/Country.jsx";
 
 class Home extends React.Component{
     constructor(props){
@@ -32,7 +33,7 @@ class Home extends React.Component{
                         <Map />
                     </div>
                     <div className="section-two">
-                        <div>Country</div>
+                        <Country data={data}/>
                         <div>Cases</div>
                         <div>Cases over time</div>
                         <div>Deaths over time</div>
