@@ -2,6 +2,8 @@ import React from "react";
 import Map from "./Map.jsx";
 import "../../public/styles.css";
 import Country from "../components/Country.jsx";
+import Cases from "../components/Cases.jsx";
+import {data, data2} from "../../data.js"
 
 class Home extends React.Component{
     constructor(props){
@@ -9,19 +11,6 @@ class Home extends React.Component{
     }
 
     render(){
-
-        const data = {
-            Country: "Canada",
-            CountryCode: "CA",
-            Slug: "canada",
-            NewConfirmed: 541,
-            TotalConfirmed: 12978,
-            NewDeaths: 39,
-            TotalDeaths: 217,
-            NewRecovered: 402,
-            TotalRecovered: 2577,
-            Date: "2020-04-05T06:37:00Z"
-          };
 
         return (
             <div className="home">
@@ -35,7 +24,7 @@ class Home extends React.Component{
                     <div className="section-two">
                         <div className="statistics">
                             <Country data={data}/>
-                            <div>Cases</div>
+                            <Cases {...data2}/>
                             <div>Cases over time</div>
                             <div>Deaths over time</div>
                         </div>

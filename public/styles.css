@@ -76,7 +76,7 @@ body {
 }
 
 .home .content .section-two {
-  width: 60%;
+  width: 55%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -107,9 +107,11 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 15px;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.home .content .section-two .statistics .country .country-name {
+.home .content .section-two .statistics .country .country-title {
   font-size: 20px;
   color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -168,6 +170,56 @@ body {
   color: grey;
   font-size: 13px;
   font-weight: bold;
+}
+
+.home .content .section-two .statistics .cases {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 2px solid #3b3b3b;
+  margin: 15px;
+  border-radius: 15px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 15px;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.home .content .section-two .statistics .cases .cases-title {
+  font-size: 20px;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 15px;
+}
+
+.home .content .section-two .statistics .cases .cases-table {
+  border-collapse: collapse;
+}
+
+.home .content .section-two .statistics .cases .cases-table thead tr {
+  border-bottom: 1px solid grey;
+  text-align: left;
+}
+
+.home .content .section-two .statistics .cases .cases-table thead th {
+  font-weight: normal;
+  font-size: 13px;
+  padding: 5px;
+  color: grey;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.home .content .section-two .statistics .cases .cases-table tbody tr {
+  border-bottom: 1px solid grey;
+}
+
+.home .content .section-two .statistics .cases .cases-table tbody td {
+  padding: 5px;
+  font-weight: normal;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .home .content .section-two .news {

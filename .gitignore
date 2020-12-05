@@ -3,3 +3,5 @@ dist/
 .env
 public/styles.css.map
 public/styles.scss
+data.js
+debug.log
