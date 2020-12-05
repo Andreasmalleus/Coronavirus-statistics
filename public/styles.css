@@ -111,7 +111,7 @@ body {
           box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.home .content .section-two .statistics .country .country-title {
+.home .content .section-two .statistics .country .title {
   font-size: 20px;
   color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -188,7 +188,7 @@ body {
           box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.home .content .section-two .statistics .cases .cases-title {
+.home .content .section-two .statistics .cases .title {
   font-size: 20px;
   color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -220,6 +220,29 @@ body {
   padding: 5px;
   font-weight: normal;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.home .content .section-two .cases-overtime {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 2px solid #3b3b3b;
+  margin: 15px;
+  border-radius: 15px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 15px;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.home .content .section-two .cases-overtime .title {
+  font-size: 20px;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 15px;
 }
 
 .home .content .section-two .news {

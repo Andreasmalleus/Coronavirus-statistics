@@ -3,7 +3,7 @@ import React from "react";
 const Cases = ({Global, Countries}) => {
     return (
         <div className="cases">
-            <div className="cases-title">Cases</div>
+            <div className="title">Cases</div>
             <table className="cases-table">
                 <thead>
                     <tr>

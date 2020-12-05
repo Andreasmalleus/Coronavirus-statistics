@@ -4,7 +4,7 @@ const Country = ({data}) => {
 
     return (
         <div className="country">
-            <div className="country-title">{data.Country}</div>
+            <div className="title">{data.Country}</div>
             <div className="country-row">
                 <div className="country-col">
                     <div className="">Total Cases</div>
