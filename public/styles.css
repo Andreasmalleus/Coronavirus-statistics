@@ -233,13 +233,52 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 15px;
+  padding: 10px;
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
           box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .home .content .section-two .cases-overtime .title {
   font-size: 20px;
+  font-weight: bold;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 15px;
+}
+
+.home .content .section-two .cases-overtime .country-name {
+  font-size: 15px;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 15px;
+}
+
+.home .content .section-two .deaths-overtime {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 2px solid #3b3b3b;
+  margin: 15px;
+  border-radius: 15px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 10px;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.home .content .section-two .deaths-overtime .title {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 15px;
+}
+
+.home .content .section-two .deaths-overtime .country-name {
+  font-size: 15px;
   color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin-bottom: 15px;

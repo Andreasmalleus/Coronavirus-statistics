@@ -3,7 +3,7 @@ import Map from "./Map.jsx";
 import "../../public/styles.css";
 import Country from "../components/Country.jsx";
 import Cases from "../components/Cases.jsx";
-import {data, data2, data3} from "../../data.js"
+import {data, data2, casesByCountry, deathsByCountry} from "../../data.js"
 import Graph from "../components/Graph.jsx";
 
 class Home extends React.Component{
@@ -28,9 +28,14 @@ class Home extends React.Component{
                             <Cases {...data2}/>
                             <div className="cases-overtime">
                                 <div className="title">Cases overtime</div>
-                                <Graph data={data3} chartName={"cases-overtime-chart"}/>
+                                <div className="country-name">{casesByCountry[0].Country}</div>
+                                <Graph data={casesByCountry} chartName={"cases-overtime-chart"}/>
                             </div>
-                            <div>Deaths over time</div>
+                            <div className="deaths-overtime">
+                                <div className="title">Deaths overtime</div>
+                                <div className="country-name">{deathsByCountry[0].Country}</div>
+                                <Graph data={deathsByCountry} chartName={"deaths-overtime-chart"}/>
+                            </div>
                         </div>
                         <div className="news">
                             News
