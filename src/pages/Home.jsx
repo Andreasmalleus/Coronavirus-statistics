@@ -3,12 +3,16 @@ import Map from "./Map.jsx";
 import "../../public/styles.css";
 import Country from "../components/Country.jsx";
 import Cases from "../components/Cases.jsx";
-import {data, data2, casesByCountry, deathsByCountry} from "../../data.js"
+import {data, data2, casesByCountry, deathsByCountry, news} from "../../data.js"
 import Graph from "../components/Graph.jsx";
+import News from "../components/News.jsx";
 
 class Home extends React.Component{
     constructor(props){
         super(props)
+        this.state = {
+            selectedCountry : "Canada"
+        }
     }
 
     render(){
@@ -28,18 +32,16 @@ class Home extends React.Component{
                             <Cases {...data2}/>
                             <div className="cases-overtime">
                                 <div className="title">Cases overtime</div>
-                                <div className="country-name">{casesByCountry[0].Country}</div>
+                                <div className="country-name">{this.state.selectedCountry}</div>
                                 <Graph data={casesByCountry} chartName={"cases-overtime-chart"}/>
                             </div>
                             <div className="deaths-overtime">
                                 <div className="title">Deaths overtime</div>
-                                <div className="country-name">{deathsByCountry[0].Country}</div>
+                                <div className="country-name">{this.state.selectedCountry}</div>
                                 <Graph data={deathsByCountry} chartName={"deaths-overtime-chart"}/>
                             </div>
                         </div>
-                        <div className="news">
-                            News
-                        </div>
+                        <News data={news.articles} country={this.state.selectedCountry}/>
                     </div>
                 </div> 
             </div>
