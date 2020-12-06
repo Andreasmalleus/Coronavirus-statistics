@@ -27,8 +27,8 @@ class Home extends React.Component{
     }
 
     componentDidMount(){
-        //this.fetchCasesByCountry();
-        //this.fetchDeathsByCountry();
+        this.fetchCasesByCountry();
+        this.fetchDeathsByCountry();
         this.fetchNews();
     }
 
@@ -37,8 +37,8 @@ class Home extends React.Component{
             this.setState({
                 selectedCountry : country
             })
-            //this.fetchCasesByCountry();
-            //this.fetchDeathsByCountry();
+            this.fetchCasesByCountry();
+            this.fetchDeathsByCountry();
             this.fetchNews();
         }
         console.log(this.state.selectedCountry.name);
