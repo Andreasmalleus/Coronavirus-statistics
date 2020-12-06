@@ -1,15 +1,22 @@
 import React from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
+const axios = require('axios');
 
 class Map extends React.Component{
 
     constructor(props){
         super(props)
+        this.state = {
+            countries : []
+        }
     }
 
-    fetchData = () => {
-
+    fetchCountries = () => {
+        return axios.get('https://api.covid19api.com/summary')
+        .then((res) => {
+            return res.data.Countries
+        })
     }
 
     onClick = (e) => {
@@ -18,6 +25,7 @@ class Map extends React.Component{
     }
 
     componentDidMount(){
+
         let map = am4core.create("chartdiv", am4maps.MapChart);
 
         map.geodataSource.url = "https://www.amcharts.com/lib/4/geodata/json/worldHigh.json";
@@ -34,21 +42,12 @@ class Map extends React.Component{
         //data for the polygonseries
         polygonSeries.useGeodata = true;
 
-        polygonSeries.data = [
-            {
-                "Country": "United States of America",
-                "id": "US",
-                "Slug": "united-states",
-                "NewConfirmed": 138903,
-                "TotalConfirmed": 13383320,
-                "NewDeaths": 826,
-                "TotalDeaths": 266873,
-                "NewRecovered": 41967,
-                "TotalRecovered": 5065030,
-                "Date": "2020-11-30T13:33:50Z",
-                "value" : 1000
-            },
-        ]
+        this.fetchCountries().then((res) => {
+            res.map((country) => Object.assign(country, {id: country.CountryCode}))
+            polygonSeries.data = res;
+        })
+
+        console.log(this.state);
 
         map.series.push(polygonSeries);
 
@@ -71,15 +70,19 @@ class Map extends React.Component{
         heatLegend.markerCount = 10;*/
 
         // Configure series
+        // "{name}\nTotal Cases : {TotalConfirmed}\n Deaths {TotalDeaths}";
         let polygonTemplate = polygonSeries.mapPolygons.template;
-        polygonTemplate.tooltipText = "{name}: {TotalConfirmed}\n";
+        polygonTemplate.tooltipText = "{name}\nTotal Cases : {TotalConfirmed}\n Deaths {TotalDeaths}";
         polygonTemplate.fill = am4core.color("#1a2b50");
         polygonTemplate.stroke = am4core.color("#4b66a6");
         polygonTemplate.strokeDasharray = "2,1";
         polygonTemplate.clickable = true
 
         //click event
-        polygonTemplate.events.on("hit", (e) => this.onClick(e), this)
+        polygonTemplate.events.on("hit", (e) => {
+            let country = e.target.dataItem.dataContext.name;
+            this.props.selectCountry(country);
+        }, this)
 
         // Create hover state and set alternative fill color
         let hs = polygonTemplate.states.create("hover");

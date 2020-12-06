@@ -7,14 +7,42 @@ import {data, data2, casesByCountry, deathsByCountry, news} from "../../data.js"
 import Graph from "../components/Graph.jsx";
 import News from "../components/News.jsx";
 import logo from "../../public/images/logo.png";
+const axios = require('axios');
 
 class Home extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            selectedCountry : "Canada"
+            selectedCountry : "Estonia",
+            global : {},
+            countries : []
         }
     }
+
+    componentDidMount(){
+        console.log(this.state);
+    }
+
+    selectCountry = (country) => {
+        if(this.selectedCountry != country){
+            this.setState({
+                selectCountry : country
+            })
+            console.log(country);
+        }
+    }
+
+    _/*fetchSummary = () => {
+        axios.get('https://api.covid19api.com/summary')
+        .then((res) => {
+            this.setState({
+                global : res.data.Global,
+                countries : res.data.Countries
+            })
+            console.log(this.state);
+        })
+        .catch((err) => console.log(err))
+    }*/
 
     render(){
 
@@ -26,11 +54,11 @@ class Home extends React.Component{
                 </div>
                 <div className="content">
                     <div className="section-one">
-                        <Map />
+                        <Map selectCountry={this.selectCountry}/>
                     </div>
                     <div className="section-two">
                         <div className="statistics">
-                            <Country data={data}/>
+                            <Country data={this.state.countries}/>
                             <Cases {...data2}/>
                             <div className="cases-overtime">
                                 <div className="title">Cases overtime</div>
