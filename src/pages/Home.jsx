@@ -13,18 +13,23 @@ class Home extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            selectedCountry : "Estonia",
+            selectedCountry : {
+                name : "Estonia",
+                code : "EE"
+            },
             test : "",
             global : {},
             countries :[],
             deathsByCountry : [],
-            casesByCountry : []
+            casesByCountry : [],
+            news : [],
         }
     }
 
     componentDidMount(){
-        this.fetchCasesByCountry();
-        this.fetchDeathsByCountry();
+        //this.fetchCasesByCountry();
+        //this.fetchDeathsByCountry();
+        this.fetchNews();
     }
 
     selectCountry = (country) => {
@@ -32,14 +37,25 @@ class Home extends React.Component{
             this.setState({
                 selectedCountry : country
             })
-            this.fetchCasesByCountry();
-            this.fetchDeathsByCountry();
+            //this.fetchCasesByCountry();
+            //this.fetchDeathsByCountry();
+            this.fetchNews();
         }
-        console.log(this.state.selectedCountry);
+        console.log(this.state.selectedCountry.name);
+    }
+
+    fetchNews = () => {
+        axios.get(`http://newsapi.org/v2/top-headlines?q=Coronavirus&country=${this.state.selectedCountry.code}&sortBy=popularity&apiKey=34467225a431470ea6415e27c3e56953`)
+        .then((res) => {
+            this.setState({
+                news : res.data.articles
+            })
+        })
+        .catch((err) => console.log(err))
     }
 
     fetchCasesByCountry = () => {
-        axios.get(`https://api.covid19api.com/dayone/country/${this.state.selectedCountry}/status/confirmed`)
+        axios.get(`https://api.covid19api.com/dayone/country/${this.state.selectedCountry.name}/status/confirmed`)
         .then((res) => {
             this.setState({
                 casesByCountry : res.data
@@ -49,7 +65,7 @@ class Home extends React.Component{
     }
 
     fetchDeathsByCountry = () => {
-        axios.get(`https://api.covid19api.com/dayone/country/${this.state.selectedCountry}/status/deaths`)
+        axios.get(`https://api.covid19api.com/dayone/country/${this.state.selectedCountry.name}/status/deaths`)
         .then((res) => {
             this.setState({
                 deathsByCountry : res.data
@@ -75,16 +91,16 @@ class Home extends React.Component{
                             <Cases {...data2}/>
                             <div className="cases-overtime">
                                 <div className="title">Cases overtime</div>
-                                <div className="country-name">{this.state.selectedCountry}</div>
+                                <div className="country-name">{this.state.selectedCountry.name}</div>
                                 <Graph data={this.state.casesByCountry} chartName={"cases-overtime-chart"}/>
                             </div>
                             <div className="deaths-overtime">
                                 <div className="title">Deaths overtime</div>
-                                <div className="country-name">{this.state.selectedCountry}</div>
+                                <div className="country-name">{this.state.selectedCountry.name}</div>
                                 <Graph data={this.state.deathsByCountry} chartName={"deaths-overtime-chart"}/>
                             </div>
                         </div>
-                        <News data={news.articles} country={this.state.selectedCountry}/>
+                        <News data={this.state.news} country={this.state.selectedCountry.name}/>
                     </div>
                 </div> 
             </div>

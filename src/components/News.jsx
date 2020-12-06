@@ -1,11 +1,13 @@
 import React from "react";
 
 const News = ({data, country}) => {
+    console.log(data);
     return (
         <div className="news">
             <div className="news-title">Top news for {country}</div>
             {
-                data != null ?
+                data != []
+                ?
                 data.map((article, id) => (
                     <a href={article.url} key={id}>
                         <div className="article">

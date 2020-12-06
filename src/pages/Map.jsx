@@ -80,7 +80,11 @@ class Map extends React.Component{
 
         //click event
         polygonTemplate.events.on("hit", (e) => {
-            let country = e.target.dataItem.dataContext.name;
+            console.log(e.target.dataItem.dataContext);
+            let country = {
+                name: e.target.dataItem.dataContext.name,
+                code : e.target.dataItem.dataContext.CountryCode
+            };
             this.props.selectCountry(country);
         }, this)
 
