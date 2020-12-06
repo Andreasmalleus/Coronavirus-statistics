@@ -14,36 +14,49 @@ class Home extends React.Component{
         super(props)
         this.state = {
             selectedCountry : "Estonia",
+            test : "",
             global : {},
-            countries : []
+            countries :[],
+            deathsByCountry : [],
+            casesByCountry : []
         }
     }
 
     componentDidMount(){
-        console.log(this.state);
+        this.fetchCasesByCountry();
+        this.fetchDeathsByCountry();
     }
 
     selectCountry = (country) => {
         if(this.selectedCountry != country){
             this.setState({
-                selectCountry : country
+                selectedCountry : country
             })
-            console.log(country);
+            this.fetchCasesByCountry();
+            this.fetchDeathsByCountry();
         }
+        console.log(this.state.selectedCountry);
     }
 
-    _/*fetchSummary = () => {
-        axios.get('https://api.covid19api.com/summary')
+    fetchCasesByCountry = () => {
+        axios.get(`https://api.covid19api.com/dayone/country/${this.state.selectedCountry}/status/confirmed`)
         .then((res) => {
             this.setState({
-                global : res.data.Global,
-                countries : res.data.Countries
+                casesByCountry : res.data
             })
-            console.log(this.state);
         })
         .catch((err) => console.log(err))
-    }*/
+    }
 
+    fetchDeathsByCountry = () => {
+        axios.get(`https://api.covid19api.com/dayone/country/${this.state.selectedCountry}/status/deaths`)
+        .then((res) => {
+            this.setState({
+                deathsByCountry : res.data
+            })
+        })
+        .catch((err) => console.log(err));
+    }
     render(){
 
         return (
@@ -63,12 +76,12 @@ class Home extends React.Component{
                             <div className="cases-overtime">
                                 <div className="title">Cases overtime</div>
                                 <div className="country-name">{this.state.selectedCountry}</div>
-                                <Graph data={casesByCountry} chartName={"cases-overtime-chart"}/>
+                                <Graph data={this.state.casesByCountry} chartName={"cases-overtime-chart"}/>
                             </div>
                             <div className="deaths-overtime">
                                 <div className="title">Deaths overtime</div>
                                 <div className="country-name">{this.state.selectedCountry}</div>
-                                <Graph data={deathsByCountry} chartName={"deaths-overtime-chart"}/>
+                                <Graph data={this.state.deathsByCountry} chartName={"deaths-overtime-chart"}/>
                             </div>
                         </div>
                         <News data={news.articles} country={this.state.selectedCountry}/>
