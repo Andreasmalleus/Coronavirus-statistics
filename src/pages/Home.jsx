@@ -6,6 +6,7 @@ import Cases from "../components/Cases.jsx";
 import {data, data2, casesByCountry, deathsByCountry, news} from "../../data.js"
 import Graph from "../components/Graph.jsx";
 import News from "../components/News.jsx";
+import logo from "../../public/images/logo.png";
 
 class Home extends React.Component{
     constructor(props){
@@ -20,6 +21,7 @@ class Home extends React.Component{
         return (
             <div className="home">
                 <div className="header">
+                    <img src={logo} alt=""/>
                     <div className="title">Coronavirus statistics</div>
                 </div>
                 <div className="content">
