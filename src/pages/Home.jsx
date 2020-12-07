@@ -1,9 +1,9 @@
 import React from "react";
-import Map from "./Map.jsx";
+import Map from "../components/Map.jsx";
 import "../../public/styles.css";
 import Country from "../components/Country.jsx";
 import Cases from "../components/Cases.jsx";
-import {data, data2, casesByCountry, deathsByCountry, news} from "../../data.js"
+import {data2} from "../../data.js"
 import Graph from "../components/Graph.jsx";
 import News from "../components/News.jsx";
 import logo from "../../public/images/logo.png";
@@ -17,7 +17,6 @@ class Home extends React.Component{
                 name : "Estonia",
                 code : "EE"
             },
-            test : "",
             global : {},
             countries :[],
             deathsByCountry : [],
@@ -30,6 +29,15 @@ class Home extends React.Component{
         this.fetchCasesByCountry();
         this.fetchDeathsByCountry();
         this.fetchNews();
+        this.fetchSummary()
+    }
+
+    componentDidUpdate(prevProps,prevState){
+        if(prevState.selectedCountry !== this.state.selectedCountry){
+            this.fetchCasesByCountry();
+            this.fetchDeathsByCountry();
+            this.fetchNews();
+        }
     }
 
     selectCountry = (country) => {
@@ -37,15 +45,25 @@ class Home extends React.Component{
             this.setState({
                 selectedCountry : country
             })
-            this.fetchCasesByCountry();
-            this.fetchDeathsByCountry();
-            this.fetchNews();
         }
         console.log(this.state.selectedCountry.name);
     }
 
+    fetchSummary = () => {
+        axios.get('https://api.covid19api.com/summary')
+        .then((res) => {
+            res.data.Countries.map((country) => Object.assign(country, {id: country.CountryCode}))
+            this.setState({
+                global : res.data.Global,
+                countries : res.data.Countries
+            })
+        })
+        .catch((err) => console.log(err))
+    }
+
     fetchNews = () => {
-        axios.get(`http://newsapi.org/v2/top-headlines?q=Coronavirus&country=${this.state.selectedCountry.code}&sortBy=popularity&apiKey=34467225a431470ea6415e27c3e56953`)
+        //api keyt needs to be hidden
+        axios.get(`http://newsapi.org/v2/top-headlines?q=Coronavirus&country=${this.state.selectedCountry.code}&sortBy=popularity&apiKey=APIKEY`)
         .then((res) => {
             this.setState({
                 news : res.data.articles
@@ -83,7 +101,7 @@ class Home extends React.Component{
                 </div>
                 <div className="content">
                     <div className="section-one">
-                        <Map selectCountry={this.selectCountry}/>
+                        <Map data={this.state.countries} selectCountry={this.selectCountry}/>
                     </div>
                     <div className="section-two">
                         <div className="statistics">
