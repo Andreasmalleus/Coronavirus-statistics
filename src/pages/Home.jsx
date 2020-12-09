@@ -40,7 +40,8 @@ class Home extends React.Component{
                 selectedCountry : country
             })
         }
-        console.log(this.state.selectedCountry.name);
+        console.log(this.state.selectedCountry.Slug);
+
     }
     
     getCountryFromCountriesByName = (countries, name) => {
@@ -66,7 +67,7 @@ class Home extends React.Component{
     }
 
     fetchNews = () => {
-        axios.get(`http://newsapi.org/v2/top-headlines?q=Coronavirus&country=${this.state.selectedCountry.CountryCode}&sortBy=popularity&apiKey=${process.env.API_KEY}`)
+        axios.get(`http://newsapi.org/v2/top-headlines?q=Coronavirus&country=${this.state.selectedCountry.id}&sortBy=popularity&apiKey=${process.env.API_KEY}`)
         .then((res) => {
             this.setState({
                 news : res.data.articles
@@ -76,17 +77,17 @@ class Home extends React.Component{
     }
 
     fetchCasesByCountry = () => {
-        axios.get(`https://api.covid19api.com/dayone/country/${this.state.selectedCountry.Country}/status/confirmed`)
+        axios.get(`https://api.covid19api.com/dayone/country/${this.state.selectedCountry.Slug}/status/confirmed`)
         .then((res) => {
             this.setState({
                 casesByCountry : res.data
-            })
+            }, () => console.log(this.state.casesByCountry[0]))
         })
         .catch((err) => console.log(err))
     }
 
     fetchDeathsByCountry = () => {
-        axios.get(`https://api.covid19api.com/dayone/country/${this.state.selectedCountry.Country}/status/deaths`)
+        axios.get(`https://api.covid19api.com/dayone/country/${this.state.selectedCountry.Slug}/status/deaths`)
         .then((res) => {
             this.setState({
                 deathsByCountry : res.data
