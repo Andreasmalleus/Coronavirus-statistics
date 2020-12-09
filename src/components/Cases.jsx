@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const Cases = ({Global, Countries}) => {
+const Cases = ({global, country}) => {
+
+    const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+        setCountries(
+            [
+                ...countries,
+                country
+            ]
+        )
+    }, [country])
+
+    console.log(countries, "current");
     return (
         <div className="cases">
             <div className="title">Cases</div>
@@ -18,14 +31,14 @@ const Cases = ({Global, Countries}) => {
                 <tbody>
                     <tr>
                         <td>Woldwide</td>
-                        <td>{Global.TotalConfirmed}</td>
-                        <td>{Global.NewConfirmed}</td>
+                        <td>{global.TotalConfirmed}</td>
+                        <td>{global.NewConfirmed}</td>
                         <td>Graph</td>
-                        <td>{Global.TotalDeaths}</td>
-                        <td>{Global.NewDeaths}</td>
+                        <td>{global.TotalDeaths}</td>
+                        <td>{global.NewDeaths}</td>
                     </tr>
-                    {Countries != null ?
-                        Countries.map((country) => (
+                    {countries != [] ?
+                        countries.map((country) => (
                                 <tr key={country.CountryCode}>
                                     <td>{country.Country}</td>
                                     <td>{country.TotalConfirmed}</td>

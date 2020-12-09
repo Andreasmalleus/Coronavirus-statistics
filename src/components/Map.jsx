@@ -36,11 +36,8 @@ const Map = ({data, selectCountry}) => {
 
         //click event
         polygonTemplate.events.on("hit", (e) => {
-            console.log(e.target.dataItem.dataContext);
-            let country = {
-                name: e.target.dataItem.dataContext.name,
-                code : e.target.dataItem.dataContext.CountryCode
-            };
+            console.log(e.target.dataItem.dataContext.Country);
+            let country = e.target.dataItem.dataContext;
             selectCountry(country);
         }, this)
 
