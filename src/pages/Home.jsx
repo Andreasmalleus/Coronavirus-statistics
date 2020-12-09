@@ -23,17 +23,14 @@ class Home extends React.Component{
     }
 
     componentDidMount(){
-        //this.fetchCasesByCountry();
-        //this.fetchDeathsByCountry();
-        //this.fetchNews();
         this.fetchSummary()
     }
 
     componentDidUpdate(prevProps,prevState){
         if(prevState.selectedCountry !== this.state.selectedCountry){
-            //this.fetchCasesByCountry();
-            //this.fetchDeathsByCountry();
-            //this.fetchNews();
+            this.fetchCasesByCountry();
+            this.fetchDeathsByCountry();
+            this.fetchNews();
         }
     }
 
@@ -61,6 +58,11 @@ class Home extends React.Component{
             })
         })
         .catch((err) => console.log(err))
+        .then(() => {
+            this.fetchCasesByCountry();
+            this.fetchDeathsByCountry();
+            this.fetchNews();
+        })
     }
 
     fetchNews = () => {

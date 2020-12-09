@@ -118,7 +118,14 @@ body {
   font-size: 20px;
   color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+}
+
+.home .content .section-two .statistics .country .update-date {
+  margin-top: 5px;
+  font-size: 13px;
+  color: grey;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .home .content .section-two .statistics .country .country-row {
@@ -189,7 +196,7 @@ body {
   font-size: 20px;
   color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .home .content .section-two .statistics .cases .cases-table {
@@ -244,7 +251,7 @@ body {
   font-size: 20px;
   color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .home .content .section-two .cases-overtime .country-name {
@@ -274,7 +281,7 @@ body {
   font-size: 20px;
   color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .home .content .section-two .deaths-overtime .country-name {

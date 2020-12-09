@@ -24,7 +24,6 @@ const Cases = ({global, country, selectCountry}) => {
                         <th>Location</th>
                         <th>Total Cases</th>
                         <th>New Cases (1 day)</th>
-                        <th>New cases (lifetime)</th>
                         <th>Deaths</th>
                         <th>New Deaths</th>
                     </tr>
@@ -34,7 +33,6 @@ const Cases = ({global, country, selectCountry}) => {
                         <td>Woldwide</td>
                         <td>{global.TotalConfirmed}</td>
                         <td>{global.NewConfirmed}</td>
-                        <td>Graph</td>
                         <td>{global.TotalDeaths}</td>
                         <td>{global.NewDeaths}</td>
                     </tr>
@@ -44,7 +42,6 @@ const Cases = ({global, country, selectCountry}) => {
                                     <td>{country.Country}</td>
                                     <td>{country.TotalConfirmed}</td>
                                     <td>{country.NewConfirmed}</td>
-                                    <td>Graph</td>
                                     <td>{country.TotalDeaths}</td>
                                     <td>{country.NewDeaths}</td>
                                 </tr>

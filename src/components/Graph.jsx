@@ -41,6 +41,7 @@ const Chart = ({chartName, data}) => {
   useEffect(() => {
     if(chart.current){
       chart.current.data = data
+
     }
   }, [data])
 

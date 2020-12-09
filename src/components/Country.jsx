@@ -1,5 +1,4 @@
 import React from "react";
-import Graph from "./Graph.jsx";
 
 const Country = ({data}) => {
 
@@ -8,17 +7,19 @@ const Country = ({data}) => {
             <div className="title">{data.Country}</div>
             <div className="country-row">
                 <div className="country-col">
-                    <div className="">Total Cases</div>
+                    <div>Total Cases</div>
                     <div className="country-total">{data.TotalConfirmed}</div>
                     <div className="country-reported">
                         <div>Reported yesterday: +</div>
                         <div className="country-new-confirmed">{data.NewConfirmed}</div>
                     </div>
-                    <div>Updated: {data.Date}</div>
                 </div>
                 <div className="country-col">
-                    <div className="country-graph">
-                        Graph
+                    <div>Recovered</div>
+                    <div className="country-total">{data.TotalRecovered}</div>
+                    <div className="country-reported">
+                        <div>Reported yesterday:</div>
+                        <div className="country-new-confirmed">+{data.NewRecovered}</div>
                     </div>
                 </div>
                 <div className="country-col">
@@ -28,9 +29,9 @@ const Country = ({data}) => {
                         <div>Reported yesterday: </div>
                         <div className="country-new-confirmed">+{data.NewDeaths}</div>
                     </div>
-                    <div>Updated: {data.Date}</div>
                 </div>
             </div>
+            <div className="update-date">Updated: {data.Date}</div>
         </div>
     )
 }
