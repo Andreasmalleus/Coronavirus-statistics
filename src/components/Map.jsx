@@ -6,7 +6,7 @@ const Map = ({data, selectCountry}) => {
 
     const map = useRef(null);
 
-    function initializeMap(){
+    const initializeMap = () =>{
         map.current = am4core.create("chartdiv", am4maps.MapChart);
 
         map.current.geodataSource.url = "https://www.amcharts.com/lib/4/geodata/json/worldHigh.json";

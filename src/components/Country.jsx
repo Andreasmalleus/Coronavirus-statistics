@@ -1,4 +1,5 @@
 import React from "react";
+import Graph from "./Graph.jsx";
 
 const Country = ({data}) => {
 
@@ -16,7 +17,9 @@ const Country = ({data}) => {
                     <div>Updated: {data.Date}</div>
                 </div>
                 <div className="country-col">
-                    <div>Graph</div>
+                    <div className="country-graph">
+                        Graph
+                    </div>
                 </div>
                 <div className="country-col">
                     <div>Deaths</div>

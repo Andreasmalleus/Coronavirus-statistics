@@ -219,6 +219,11 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.home .content .section-two .statistics .cases .cases-table tbody .cases-row:hover {
+  background-color: #1a2b50;
+  color: white;
+}
+
 .home .content .section-two .cases-overtime {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -237,7 +242,6 @@ body {
 
 .home .content .section-two .cases-overtime .title {
   font-size: 20px;
-  font-weight: bold;
   color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin-bottom: 15px;
@@ -268,7 +272,6 @@ body {
 
 .home .content .section-two .deaths-overtime .title {
   font-size: 20px;
-  font-weight: bold;
   color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin-bottom: 15px;

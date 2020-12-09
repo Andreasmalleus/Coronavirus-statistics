@@ -64,7 +64,6 @@ class Home extends React.Component{
     }
 
     fetchNews = () => {
-        //api keyt needs to be hidden
         axios.get(`http://newsapi.org/v2/top-headlines?q=Coronavirus&country=${this.state.selectedCountry.CountryCode}&sortBy=popularity&apiKey=${process.env.API_KEY}`)
         .then((res) => {
             this.setState({
@@ -108,7 +107,7 @@ class Home extends React.Component{
                         <div className="section-two">
                             <div className="statistics">
                                 <Country data={this.state.selectedCountry}/>
-                                <Cases global={this.state.global} country={this.state.selectedCountry}/>
+                                <Cases global={this.state.global} country={this.state.selectedCountry} selectCountry={this.selectCountry}/>
                                 <div className="cases-overtime">
                                     <div className="title">Cases overtime</div>
                                     <div className="country-name">{this.state.selectedCountry.Country}</div>

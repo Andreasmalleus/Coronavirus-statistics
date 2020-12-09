@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 
-const Cases = ({global, country}) => {
+const Cases = ({global, country, selectCountry}) => {
 
     const [countries, setCountries] = useState([]);
 
     useEffect(() => {
-        setCountries(
-            [
-                ...countries,
-                country
-            ]
-        )
+        if(!countries.includes(country)){
+            setCountries(
+                [
+                    ...countries,
+                    country
+                ]
+            )
+        }
     }, [country])
 
     return (
@@ -38,7 +40,7 @@ const Cases = ({global, country}) => {
                     </tr>
                     {countries != [] ?
                         countries.map((country) => (
-                                <tr key={country.CountryCode}>
+                                <tr key={country.CountryCode} className="cases-row" onClick={() => selectCountry(country)}>
                                     <td>{country.Country}</td>
                                     <td>{country.TotalConfirmed}</td>
                                     <td>{country.NewConfirmed}</td>
