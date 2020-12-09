@@ -311,6 +311,13 @@ body {
   text-decoration: none;
 }
 
+.home .content .section-two .news .no-news {
+  margin: 10px;
+  font-size: 15px;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .home .content .section-two .news .news-title {
   margin: 10px;
   border-bottom: 1px solid grey;
