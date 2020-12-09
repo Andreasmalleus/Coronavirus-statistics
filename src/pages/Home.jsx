@@ -107,7 +107,7 @@ class Home extends React.Component{
                         </div>
                         <div className="section-two">
                             <div className="statistics">
-                                <Country data={this.state.countries}/>
+                                <Country data={this.state.selectedCountry}/>
                                 <Cases global={this.state.global} country={this.state.selectedCountry}/>
                                 <div className="cases-overtime">
                                     <div className="title">Cases overtime</div>

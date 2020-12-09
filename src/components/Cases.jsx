@@ -13,7 +13,6 @@ const Cases = ({global, country}) => {
         )
     }, [country])
 
-    console.log(countries, "current");
     return (
         <div className="cases">
             <div className="title">Cases</div>

@@ -28,7 +28,6 @@ const Country = ({data}) => {
                     <div>Updated: {data.Date}</div>
                 </div>
             </div>
-            <div className="country-updated">Updated: {data.Date} Source Postman</div>
         </div>
     )
 }
