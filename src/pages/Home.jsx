@@ -63,7 +63,7 @@ class Home extends React.Component{
 
     fetchNews = () => {
         //api keyt needs to be hidden
-        axios.get(`http://newsapi.org/v2/top-headlines?q=Coronavirus&country=${this.state.selectedCountry.code}&sortBy=popularity&apiKey=APIKEY`)
+        axios.get(`http://newsapi.org/v2/top-headlines?q=Coronavirus&country=${this.state.selectedCountry.code}&sortBy=popularity&apiKey=${process.env.API_KEY}`)
         .then((res) => {
             this.setState({
                 news : res.data.articles
