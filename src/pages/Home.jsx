@@ -9,6 +9,7 @@ import News from "../components/News.jsx";
 import logo from "../../public/images/logo.png";
 const axios = require('axios');
 import ClipLoader from "react-spinners/ClipLoader";
+import SearchBar from "../components/SearchBar.jsx";
 
 class Home extends React.Component{
     constructor(props){
@@ -98,6 +99,11 @@ class Home extends React.Component{
         })
         .catch((err) => console.log(err));
     }
+
+    handleChange = (e) => {
+        console.log(e);
+    }
+
     render(){
         if(this.state.selectedCountry != null){
             return (
@@ -109,6 +115,7 @@ class Home extends React.Component{
                     <div className="content">
                         <div className="section-one">
                             <Map data={this.state.countries} selectCountry={this.selectCountry}/>
+                            <SearchBar data={this.state.countries} selectedCountry={this.state.selectedCountry} selectCountry={this.selectCountry}/>
                         </div>
                         <div className="section-two">
                             <div className="statistics">
