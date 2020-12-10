@@ -2,8 +2,6 @@ import React from "react";
 
 const News = ({data, country}) => {
 
-    console.log(data);
-
     return (
         <div className="news">
             <div className="news-title">Top news for {country}</div>

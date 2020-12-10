@@ -243,6 +243,20 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.home .content .section-two .statistics .cases .cases-table tbody .country-cell {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.home .content .section-two .statistics .cases .cases-table tbody .country-cell img {
+  width: 20px;
+  height: 20px;
+}
+
 .home .content .section-two .statistics .cases .cases-table tbody tr {
   border-bottom: 1px solid grey;
 }
