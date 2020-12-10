@@ -84,7 +84,7 @@ class Home extends React.Component{
         .then((res) => {
             this.setState({
                 casesByCountry : res.data
-            }, () => console.log(this.state.casesByCountry[0]))
+            })
         })
         .catch((err) => console.log(err))
     }

@@ -14,43 +14,62 @@ const Map = ({data, selectCountry}) => {
         //using miller projection
         map.current.projection = new am4maps.projections.Miller();
 
-        //polygonseries in order to draw the map
-        let polygonSeries = new am4maps.MapPolygonSeries();
-
-        map.current.zoomControl = new am4maps.ZoomControl();
-        map.current.zoomControl.valign = "top";
-
-        //data for the polygonseries
+        //represented as map areas
+        var polygonSeries = map.current.series.push(new am4maps.MapPolygonSeries());
+        polygonSeries.exclude = ["AQ"];
         polygonSeries.useGeodata = true;
 
-        polygonSeries.data = data;
-
-        map.current.series.push(polygonSeries);
+        polygonSeries.calculateVisualCenter = true;
 
         let polygonTemplate = polygonSeries.mapPolygons.template;
-        polygonTemplate.tooltipText = "{name}\nTotal Cases : {TotalConfirmed}\n Deaths {TotalDeaths}";
         polygonTemplate.fill = am4core.color("#1a2b50");
         polygonTemplate.stroke = am4core.color("#4b66a6");
         polygonTemplate.strokeDasharray = "2,1";
         polygonTemplate.clickable = true
 
+        //adding visual objects
+        let imageSeries = map.current.series.push(new am4maps.MapImageSeries());
+        imageSeries.data = data;
+        imageSeries.dataFields.value = "TotalConfirmed";
+
+        let imageTemplate = imageSeries.mapImages.template;
+        imageTemplate.nonScaling = true
+
+        let circle = imageTemplate.createChild(am4core.Circle);
+        circle.fillOpacity = 0.7;
+
+        circle.fill = "#3253b3";
+        circle.tooltipText = "{Country}: [bold]{value}[/]";
+
+        imageSeries.heatRules.push({
+            "target": circle,
+            "property": "radius",
+            "min": 5,
+            "max": 50,
+            "dataField": "value"
+        })
+
         //click event
-        polygonTemplate.events.on("hit", (e) => {
-            console.log(e.target.dataItem.dataContext.Country);
+        imageTemplate.events.on("hit", (e) => {
             let country = e.target.dataItem.dataContext;
             selectCountry(country);
         }, this)
 
-        // Create hover state and set alternative fill color
-        let hs = polygonTemplate.states.create("hover");
-        hs.properties.fill = am4core.color("#3a559a");
-
-        polygonSeries.exclude = ["AQ"];
-
-        //zoom to estonia
-        map.current.events.on("ready", function(ev) {
-            map.current.zoomToMapObject(polygonSeries.getPolygonById("EE"));
-          });
+        imageTemplate.adapter.add("latitude", function(latitude, target) {
+            let polygon = polygonSeries.getPolygonById(target.dataItem.dataContext.id);
+            if(polygon){
+                return polygon.visualLatitude;
+            }
+            return latitude;
+        })
+            
+        imageTemplate.adapter.add("longitude", function(longitude, target) {
+            let polygon = polygonSeries.getPolygonById(target.dataItem.dataContext.id);
+            if(polygon){
+                return polygon.visualLongitude;
+            }
+            return longitude;
+        })
     }
 
     useEffect(() => {
@@ -61,7 +80,7 @@ const Map = ({data, selectCountry}) => {
             map.current && map.current.dispose();
         };
     }, []);
-  
+
     useEffect(() => {
         if(map.current){
             map.current.dispose();
@@ -74,6 +93,7 @@ const Map = ({data, selectCountry}) => {
             map.current && map.current.dispose();
         }
     }, [])
+  
 
     return (
         <div id="chartdiv" className="map"></div>
