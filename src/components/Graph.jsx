@@ -36,8 +36,6 @@ const Chart = ({chartName, data}) => {
 
       lineSeries.tooltip.getFillFromObject = false;
       lineSeries.tooltip.background.fill ="black"
-
-      console.log(lineSeries);
   
       chart.current.cursor = new am4charts.XYCursor();
     }
