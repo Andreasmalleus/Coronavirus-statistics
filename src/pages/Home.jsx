@@ -8,6 +8,7 @@ import Graph from "../components/Graph.jsx";
 import News from "../components/News.jsx";
 import logo from "../../public/images/logo.png";
 const axios = require('axios');
+import ClipLoader from "react-spinners/ClipLoader";
 
 class Home extends React.Component{
     constructor(props){
@@ -19,6 +20,7 @@ class Home extends React.Component{
             deathsByCountry : [],
             casesByCountry : [],
             news : [],
+            loading : true
         }
     }
 
@@ -55,7 +57,8 @@ class Home extends React.Component{
             this.setState({
                 global : res.data.Global,
                 countries : res.data.Countries,
-                selectedCountry : this.getCountryFromCountriesByName(res.data.Countries, "Estonia")
+                selectedCountry : this.getCountryFromCountriesByName(res.data.Countries, "Estonia"),
+                loading : false
             })
         })
         .catch((err) => console.log(err))
@@ -128,7 +131,16 @@ class Home extends React.Component{
                 </div>
             )
         }else{
-            return  <div>Loading</div>
+            return  (
+                <div className="loading">
+                    <ClipLoader
+                        size={100}
+                        color={"#1a2b50"}
+                        loading={this.state.loading}
+                    />
+                    Fetching...
+                </div>
+            )
         }
     }
 }
