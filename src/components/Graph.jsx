@@ -21,14 +21,23 @@ const Chart = ({chartName, data}) => {
       dateAxis.renderer.grid.template.location = 0;
   
       let valueAxis = chart.current.yAxes.push(new am4charts.ValueAxis());
-      valueAxis.tooltip.disabled = true;
       valueAxis.renderer.minWidth = 35;
-  
+      valueAxis.tooltip.disabled = true;
+
       let lineSeries = chart.current.series.push(new am4charts.LineSeries());
       lineSeries.dataFields.dateX = "Date";
       lineSeries.dataFields.valueY = "Cases";
-      lineSeries.tooltipText = "{Cases : valueY.Cases\n Date : dateX.Date}";
       lineSeries.tooltip.pointerOrientation = "vertical";
+
+      lineSeries.strokeWidth = 3;
+      lineSeries.stroke = am4core.color("#1a2b50");
+
+      lineSeries.tooltipText = "[bold]{Cases}[/]";
+
+      lineSeries.tooltip.getFillFromObject = false;
+      lineSeries.tooltip.background.fill ="black"
+
+      console.log(lineSeries);
   
       chart.current.cursor = new am4charts.XYCursor();
     }
