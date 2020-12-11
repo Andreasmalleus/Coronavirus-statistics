@@ -3,7 +3,6 @@ import Map from "../components/Map.jsx";
 import "../../public/styles.css";
 import Country from "../components/Country.jsx";
 import Cases from "../components/Cases.jsx";
-import {data2} from "../../data.js"
 import Graph from "../components/Graph.jsx";
 import News from "../components/News.jsx";
 import logo from "../../public/images/logo.png";
